@@ -1,0 +1,25 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px 5rem;
+}
+
+.menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.menu-item, .nav-logo {
+  cursor: pointer;
+}
+
+.login {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 2% 10%;
+}
