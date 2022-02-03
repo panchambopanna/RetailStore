@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Product from "./Product";
 
-const Products = (props) => {
-  const { products } = props || {};
+const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/Products");
+      const data = await res.json();
+      console.log(data);
+      setProducts(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
-    <>List of Products!
-      <div className="container-fluid my-3"
+    <div className="container">
+      <h1>Products</h1>
+      <div
         style={{
           display: "flex",
           flexDirection: "colomn",
@@ -19,12 +35,9 @@ const Products = (props) => {
           <Product key={index} product={product} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
 export default Products;
 
-Products.propTypes = {
-  products: PropTypes.array.isRequired
-};

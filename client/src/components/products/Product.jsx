@@ -1,14 +1,15 @@
 import React from "react";
+import Loading from "../common/Loading";
+import { Link } from 'react-router-dom';
 
 const Product = (props) => {
   const { product } = props || {};
 
   return (
     <>
-      <div>
-        <div className="card" style={{ width: "17rem", minHeight: "20rem", boxShadow: "2px 2px 10px gray", color: "white" }}>
-          <img style={{ height: '10rem', objectFit: "contain", objectPosition: "center" }} src={product.pictureUrl} className="card-img-top" alt="..." />
-          <div className="card-body" style={{backgroundColor: "black"}}>
+      <div className="card" style={{ width: "17rem", minHeight: "20rem", boxShadow: "2px 2px 10px gray", color: "white" }}>
+        {product ? <><img style={{ height: '10rem', objectFit: "contain", objectPosition: "center" }} src={product.pictureUrl} className="card-img-top" alt="..." />
+          <div className="card-body" style={{ backgroundColor: "black" }}>
             <h6 className="card-title">{product.name}</h6>
             <p className="small card-text">
               {product.brand}/{product.type}
@@ -16,14 +17,13 @@ const Product = (props) => {
             <p className="card-text">
               ₹{product.price}/-
             </p>
-            <button className="btn" style={{border: "1px solid white", color:"white"}} >
+            <button className="btn" style={{ border: "1px solid white", color: "white" }} >
               Add to Cart
             </button>
-            <a href="/" style={{textDecoration:"none", color: "white", padding: "0px 10px"}} >
+            <Link className="btn" to={`${product.id}`} >
               View
-            </a>
-          </div>
-        </div>
+            </Link>
+          </div></> : <Loading />}
       </div>
     </>
   );
