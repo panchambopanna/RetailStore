@@ -2,7 +2,9 @@ import ReactLoading from 'react-loading';
 
 const Loading = () => {
   return(
-    <ReactLoading type="bubbles" color="black" height='5%' width='5%' />
+    <div style={{alignItems:'center', margin:'auto',padding:'auto', width:'10%'}}>
+      <ReactLoading type="bubbles" color="black" />
+    </div>
   )
 };
 

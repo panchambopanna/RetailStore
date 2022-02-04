@@ -1,14 +1,15 @@
 import React from "react";
-import Loading from "../common/Loading";
 import { Link } from 'react-router-dom';
 
 const Product = (props) => {
   const { product } = props || {};
 
+  
+
   return (
     <>
       <div className="card" style={{ width: "17rem", minHeight: "20rem", boxShadow: "2px 2px 10px gray", color: "white" }}>
-        {product ? <><img style={{ height: '10rem', objectFit: "contain", objectPosition: "center" }} src={product.pictureUrl} className="card-img-top" alt="..." />
+        <img style={{ height: '10rem', objectFit: "contain", objectPosition: "center" }} src={product.pictureUrl} className="card-img-top" alt="..." />
           <div className="card-body" style={{ backgroundColor: "black" }}>
             <h6 className="card-title">{product.name}</h6>
             <p className="small card-text">
@@ -23,7 +24,7 @@ const Product = (props) => {
             <Link className="btn" to={`${product.id}`} >
               View
             </Link>
-          </div></> : <Loading />}
+          </div>
       </div>
     </>
   );
