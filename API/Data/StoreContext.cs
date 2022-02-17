@@ -11,6 +11,6 @@ namespace API.Data
 
         // Create a DbSet: this creates a table in our DB. Use <Product> class we created and call the table 'Products'
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<Basket> Baskets { get; set; }
     }
 }

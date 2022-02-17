@@ -15,9 +15,9 @@ namespace API.Controllers
         
         private readonly StoreContext _context;
 
-        public ProductsController(StoreContext context)
+        public ProductsController(StoreContext context) //this fetches our store.db and assigns it to context
         {
-            _context = context;
+            _context = context; // we copy to local
            
         }
 
@@ -26,9 +26,11 @@ namespace API.Controllers
         // public ActionResult<List<Product>> GetProducts() // sync
         public async Task<ActionResult<List<Product>>> GetProducts()  //async
         {
+            //here we access the Product table from Store.db and convert it to list
             // var products = context.Products.ToList();  //sync
              var products = await _context.Products.ToListAsync(); // async
 
+            // we return the products
             return Ok(products); // we can also return products form above line
         }
 
@@ -36,12 +38,13 @@ namespace API.Controllers
         [HttpGet("{id}")] //api/products/2
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
+            // here we call the store.db -> Product table and check if there is a product with the id passed
             // return context.Products.Find(id);
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);    //assign it to the product
 
             if (product == null) return NotFound();
 
-            return product;
+            return product; // returns that particular product
         }
     }
 }
