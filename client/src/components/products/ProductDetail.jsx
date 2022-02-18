@@ -11,7 +11,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const { basket, setBasket } = useContext(StoreContext);
   const [productDet, setProductDet] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const item = basket?.basketItem.find((i) => i.productId === productDet?.id);
 
@@ -20,7 +20,9 @@ const ProductDetail = () => {
       .details(parseInt(id))
       .then((product) => setProductDet(product))
       .catch((e) => console.log(e))
-      .finally(setLoading(false));
+      .finally(  setTimeout(() => {
+        setLoad(false);
+      }, 2500));
   }, [id]);
 
   const handleAddItems = () => {
@@ -31,9 +33,9 @@ const ProductDetail = () => {
       .catch((e) => e.message);
   };
 
-  if (loading) return <Loading message="Loading product..." />;
+  if (load) return <Loading message="Loading product..." />;
 
-  if (productDet === "") return <PageNotFound message="Product Not Found" />;
+  if (!productDet) return <PageNotFound message="Product Not Found" />;
 
   return (
     <div className="container d-flex justify-content-evenly my-3">
